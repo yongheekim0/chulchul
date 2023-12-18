@@ -13,6 +13,7 @@ const ProductDetails = () => {
   const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   // get the single product based on the id
+  console.log(products)
   const product = products.find(item => {
     return item._id == id;
   });

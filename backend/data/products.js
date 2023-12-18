@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Cheese Puffs',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/91wKXvjITGL._SX679_.jpg',
     description: 'Irresistibly cheesy and crunchy snacks.',
@@ -12,7 +11,6 @@ const products = [
     numReviews: 20,
   },
   {
-    _id: '2',
     name: 'Chocolate Chip Cookies',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51DlLGtW7KL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Classic chocolate chip cookies for a sweet treat.',
@@ -24,7 +22,6 @@ const products = [
     numReviews: 15,
   },
   {
-    _id: '3',
     name: 'Mixed Nuts',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51Ze9s-q6bL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'A healthy mix of assorted nuts for snacking.',
@@ -36,7 +33,6 @@ const products = [
     numReviews: 25,
   },
   {
-    _id: '4',
     name: 'Popcorn',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/41kknPqS41L._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Light and fluffy popcorn for movie nights.',
@@ -48,7 +44,6 @@ const products = [
     numReviews: 18,
   },
   {
-    _id: '5',
     name: 'Potato Chips',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/41grpp95ftL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Classic potato chips with the perfect crunch.',
@@ -60,7 +55,6 @@ const products = [
     numReviews: 22,
   },
   {
-    _id: '6',
     name: 'Trail Mix',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/71i9ddZR0mL._SX679_.jpg',
     description: 'Energy-packed trail mix with nuts and dried fruits.',
@@ -72,7 +66,6 @@ const products = [
     numReviews: 30,
   },
   {
-    _id: '7',
     name: 'Pretzels',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51wVQMmi6jL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Crunchy pretzels for a savory snack experience.',
@@ -84,7 +77,6 @@ const products = [
     numReviews: 23,
   },
   {
-    _id: '8',
     name: 'Gummy Bears',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51klh7hjawL._SY300_SX300_QL70_FMwebp_.jpg',
     description: 'Chewy and fruity gummy bears for a sweet tooth.',
@@ -96,7 +88,6 @@ const products = [
     numReviews: 19,
   },
   {
-    _id: '9',
     name: 'Rice Cakes',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51p1NRN7vXL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Light and airy rice cakes for guilt-free snacking.',
@@ -108,7 +99,6 @@ const products = [
     numReviews: 17,
   },
   {
-    _id: '10',
     name: 'Fruit Chips',
     image: 'https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/41KdBt1dLGL._SX300_SY300_QL70_FMwebp_.jpg',
     description: 'Crispy fruit chips made from a variety of fruits.',
