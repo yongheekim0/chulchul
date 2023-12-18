@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetails';
+import Login from './pages/Login';
 
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/product/:id' element={<ProductDetail/>}/>
+          <Route path="/user" element={<Login />} />
         </Routes>
         <Sidebar/>
         <Footer />

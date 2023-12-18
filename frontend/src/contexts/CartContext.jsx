@@ -30,12 +30,12 @@ const CartProvider = ({ children }) => {
     const newItem = { ...product, amount: 1 };
     // check if the item is already in the cart
     const cartItem = cart.find(item => {
-      return item.id === id;
+      return item._id === id;
     });
     // if cart item is already in the cart
     if (cartItem) {
       const newCart = [...cart].map(item => {
-        if (item.id === id) {
+        if (item._id === id) {
           return { ...item, amount: cartItem.amount + 1 };
         } else {
           return item;
@@ -49,7 +49,7 @@ const CartProvider = ({ children }) => {
   // remove from the cart
   const removeFromCart = id => {
     const newCart = cart.filter(item => {
-      return item.id !== id;
+      return item._id !== id;
     });
     setCart(newCart);
   };
@@ -59,18 +59,18 @@ const CartProvider = ({ children }) => {
   };
   // increase amount
   const increaseAmount = id => {
-    const cartItem = cart.find(item => item.id === id);
+    const cartItem = cart.find(item => item._id === id);
     addToCart(cartItem, id);
   };
 
   // decrease amount
   const decreaseAmount = id => {
     const cartItem = cart.find(item => {
-      return item.id === id;
+      return item._id === id;
     });
     if (cartItem) {
       const newCart = cart.map(item => {
-        if (item.id === id) {
+        if (item._id === id) {
           return { ...item, amount: cartItem.amount - 1 };
         } else {
           return item;
