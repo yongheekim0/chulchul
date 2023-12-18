@@ -1,4 +1,4 @@
-const snacksData = [
+const products = [
   {
     _id: '1',
     name: 'Cheese Puffs',
@@ -122,4 +122,4 @@ const snacksData = [
 ];
 
 // You can use this dummy data in your application
-export default snacksData
+export default products

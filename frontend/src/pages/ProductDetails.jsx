@@ -17,7 +17,6 @@ const ProductDetails = () => {
     return item._id == id;
   });
   // if product is not found
-  console.log(product);
   if (!product) {
     return (
       <section className="h-screen flex justify-center items-center">

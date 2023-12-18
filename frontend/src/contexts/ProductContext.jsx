@@ -1,21 +1,17 @@
 import { createContext, useState, useEffect } from 'react';
-import snacksData from '../data';
 export const ProductContext = createContext();
+import axios from 'axios';
 
 const ProductProvider = ({ children }) => {
   // products state
   const [products, setProducts] = useState([]);
   // fetch products
   useEffect(() => {
-    // const fetchProducts = async () => {
-    //   const response = await fetch('https://fakestoreapi.com/products');
-    //   const data = await response.json();
-    //   setProducts(data);
-    // };
-    // fetchProducts();
-    const data = snacksData
-    console.log(data)
-    setProducts(data)
+    const fetchProducts = async () => {
+      const { data } = await axios.get('/api/products');
+      setProducts(data)
+    };
+    fetchProducts();
   }, []);
   return (
     <ProductContext.Provider value={{ products }}>
