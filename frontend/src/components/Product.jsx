@@ -8,7 +8,7 @@ import {addToCart} from '../slices/cartSlice'
 const Product = ({ product }) => {
   const { _id, image, category, name, price, brand, rating, numReviews, countInStock } = product;
   const dispatch = useDispatch()
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
     dispatch(addToCart({ ...product }))
   }
   return (

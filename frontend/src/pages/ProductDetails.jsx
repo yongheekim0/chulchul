@@ -23,7 +23,7 @@ const ProductDetails = () => {
   if (!product) {
     return (
       <section className="flex items-center justify-center h-screen">
-        Loading...
+        <Loader />
       </section>
     );
   }
@@ -74,7 +74,6 @@ const ProductDetails = () => {
               <p className="mb-8">{description}</p>
 
               <button
-                // onClick={() => addToCart(product, product._id)}
                 onClick={addToCartHandler}
                 className={`${
                   countInStock === 0

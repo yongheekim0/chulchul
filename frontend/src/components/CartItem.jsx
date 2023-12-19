@@ -2,17 +2,20 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { IoMdClose, IoMdRemove, IoMdAdd } from 'react-icons/io';
 // import cart context
-import { addToCart, decreaseQty } from '../slices/cartSlice';
+import { addToCart, decreaseQty, removeFromCart } from '../slices/cartSlice';
 
 const CartItem = ({ item }) => {
  // destructure item
   const { _id, name, image, price, qty, brand } = item;
   const dispatch = useDispatch()
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
     dispatch(addToCart({ ...item }))
   }
-  const decreaseAmountHandler = () => {
+  const decreaseAmountHandler = async () => {
     dispatch(decreaseQty({...item}))
+  }
+  const removeFromCartHandler = async (id) => {
+    dispatch(removeFromCart(id))
   }
   return (
     <div className="flex w-full py-2 font-light text-gray-500 border-b border-gray-200 gap-x-4 lg:px-6">
@@ -34,7 +37,7 @@ const CartItem = ({ item }) => {
             </Link>
             {/* remove icon */}
             <div
-              // onClick={decreaseAmountHandler}
+              onClick={()=> removeFromCartHandler(_id)}
               className="text-xl cursor-pointer"
             >
               <IoMdClose className="text-gray-500 transition hover:text-red-500" />

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 // import link
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import icons
 import { IoMdArrowForward } from 'react-icons/io';
 import { FiTrash2 } from 'react-icons/fi';
@@ -9,14 +9,28 @@ import { FiTrash2 } from 'react-icons/fi';
 import CartItem from '../components/CartItem';
 // import sidebar context
 import { SidebarContext } from '../contexts/SidebarContext';
+import { emptyCart } from '../slices/cartSlice';
 
 const Sidebar = () => {
-  
+  // sidebar context
   const { isOpen, handleClose } = useContext(SidebarContext);
+  // fetch the cart state
   const { cartItems: cart, itemsPrice, totalPrice, shippingPrice, taxPrice } = useSelector((state) => state.cart)
-  console.log({cart})
+  console.log(cart.length)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  // set item amount
   const itemAmount = cart.reduce((a ,c) => a + c.qty, 0)
   const plural = itemAmount >=2 ? 'items': 'item'
+
+  const emptyCartHandler = async () => {
+    dispatch(emptyCart())
+  }
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=/shipping')
+  }
   return (
     <div
       className={`${
@@ -45,18 +59,19 @@ const Sidebar = () => {
         <div className="flex items-center justify-between w-full">
           {/* total */}
           <div className="font-semibold uppercase">
-            <span className="mr-2">Total:</span>$ {totalPrice}
+            <span className="mr-2">Total:</span>$ {itemsPrice}
           </div>
           {/* clear cart icon */}
           <div
-            // onClick={clearCart}
+            onClick={emptyCartHandler}
             className="flex items-center justify-center w-12 h-12 py-4 text-xl text-white bg-red-500 cursor-pointer"
           >
             <FiTrash2 />
           </div>
         </div>
         <Link to='/' className='flex items-center justify-center w-full p-4 mt-2 font-medium bg-gray-200 text-primary'>View cart</Link>
-        <Link to='/'className='flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary'>Checkout</Link>
+       
+        <button className='flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary' disabled={cart.length === 0} onClick={checkoutHandler}>Checkout</button>
       </div>
     </div>
   );

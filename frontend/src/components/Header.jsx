@@ -15,7 +15,6 @@ const Header = () => {
   const [isActive, setIsActive] = useState(false);
   const { isOpen, setIsOpen } = useContext(SidebarContext);
   const { cartItems } = useSelector(state => state.cart);
-  console.log({ cartItems });
   // event listener
   const itemAmount = cartItems.reduce((a, c) => a + c.qty, 0);
   useEffect(() => {
