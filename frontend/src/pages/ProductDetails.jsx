@@ -1,12 +1,9 @@
-import { useContext } from 'react';
-
 import { useParams, useNavigate } from 'react-router-dom';
 // import cart context
-import { CartContext } from '../contexts/CartContext';
 import { useDispatch } from 'react-redux';
 //import slices
 import { useGetProductDetailQuery } from '../slices/productsApiSlice';
-import {addToCart} from '../slices/cartSlice'
+import { addToCart } from '../slices/cartSlice';
 //import components
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
@@ -15,16 +12,14 @@ const ProductDetails = () => {
   //get the product id from the url
   const { id: productId } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {
     data: product,
     isLoading,
     error,
   } = useGetProductDetailQuery(productId);
-
-  const { addToCart } = useContext(CartContext);
-  // get the single product based on the id
-  // if product is not found
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product }));
+  };
   if (!product) {
     return (
       <section className="flex items-center justify-center h-screen">
@@ -48,7 +43,7 @@ const ProductDetails = () => {
   return (
     <section className="flex items-center h-screen pt-32 pb-12 lg:py-32">
       {isLoading ? (
-        <Loader/>
+        <Loader />
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (
@@ -79,7 +74,8 @@ const ProductDetails = () => {
               <p className="mb-8">{description}</p>
 
               <button
-                onClick={() => addToCart(product, product._id)}
+                // onClick={() => addToCart(product, product._id)}
+                onClick={addToCartHandler}
                 className={`${
                   countInStock === 0
                     ? 'bg-red-600 text-primary'

@@ -1,22 +1,27 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { IoMdClose, IoMdRemove, IoMdAdd } from 'react-icons/io';
 // import cart context
-import { CartContext } from '../contexts/CartContext';
+import { addToCart, decreaseQty } from '../slices/cartSlice';
 
 const CartItem = ({ item }) => {
-  const { removeFromCart, increaseAmount, decreaseAmount } =
-    useContext(CartContext);
-  // destructure item
-  const { _id, name, image, price, amount, brand } = item;
+ // destructure item
+  const { _id, name, image, price, qty, brand } = item;
+  const dispatch = useDispatch()
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...item }))
+  }
+  const decreaseAmountHandler = () => {
+    dispatch(decreaseQty({...item}))
+  }
   return (
-    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
+    <div className="flex w-full py-2 font-light text-gray-500 border-b border-gray-200 gap-x-4 lg:px-6">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
         {/* image */}
         <Link to={`/product/${_id}`}>
           <img className="max-w-[80px]" src={image} alt="" />
         </Link>
-        <div className="w-full flex flex-col">
+        <div className="flex flex-col w-full">
           {/* name & remove icon */}
           <div className="flex justify-between mb-2">
             {/* name */}
@@ -29,10 +34,10 @@ const CartItem = ({ item }) => {
             </Link>
             {/* remove icon */}
             <div
-              onClick={() => removeFromCart(_id)}
+              // onClick={decreaseAmountHandler}
               className="text-xl cursor-pointer"
             >
-              <IoMdClose className="text-gray-500 hover:text-red-500 transition" />
+              <IoMdClose className="text-gray-500 transition hover:text-red-500" />
             </div>
           </div>
           <div className="flex gap-x-2 h-[36px] text-sm">
@@ -40,32 +45,30 @@ const CartItem = ({ item }) => {
             <div className="flex flex-1 max-w-[100px] bg-transparent items-center h-full border text-primary font-medium">
               {/* minus icon */}
               <div
-                onClick={() => decreaseAmount(_id)}
-                className="flex-1 flex justify-center cursor-pointer h-full items-center"
+                onClick={decreaseAmountHandler}
+                className="flex items-center justify-center flex-1 h-full cursor-pointer"
               >
                 <IoMdRemove />
               </div>
-              {/* amount */}
-              <div className="h-full flex justify-center items-center px-2">
-                {amount}
+              {/* qty */}
+              <div className="flex items-center justify-center h-full px-2">
+                {qty}
               </div>
               <div
-                onClick={() => increaseAmount(_id)}
-                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+                onClick={addToCartHandler}
+                className="flex items-center justify-center flex-1 h-full cursor-pointer"
               >
                 {/* plus icon */}
                 <IoMdAdd />
               </div>
             </div>
             {/* item price */}
-            <div className=" flex-1 flex justify-around items-center">
+            <div className="flex items-center justify-around flex-1 ">
               $ {price}
             </div>
             {/* final price */}
             {/* make the price at 2 decimals */}
-            <div className=" flex-1 flex justify-end items-center text-primary font-medium">{`$ ${parseFloat(
-              price * amount
-            ).toFixed(2)}`}</div>
+            <div className="flex items-center justify-end flex-1 font-medium text-primary">$ {parseFloat(price * qty).toFixed(2)}</div>
           </div>
         </div>
       </div>

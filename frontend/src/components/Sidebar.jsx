@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 // import link
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,14 +9,13 @@ import { FiTrash2 } from 'react-icons/fi';
 import CartItem from '../components/CartItem';
 // import sidebar context
 import { SidebarContext } from '../contexts/SidebarContext';
-// import cart context
-import { CartContext } from '../contexts/CartContext';
 
 const Sidebar = () => {
   
   const { isOpen, handleClose } = useContext(SidebarContext);
-  const { cart, clearCart, total, itemAmount } = useContext(CartContext);
-
+  const { cartItems: cart, itemsPrice, totalPrice, shippingPrice, taxPrice } = useSelector((state) => state.cart)
+  console.log({cart})
+  const itemAmount = cart.reduce((a ,c) => a + c.qty, 0)
   const plural = itemAmount >=2 ? 'items': 'item'
   return (
     <div
@@ -25,8 +24,10 @@ const Sidebar = () => {
       } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px] overflow-auto`}
     >
       {' '}
-      <div className="flex items-center justify-between py-6 border-b">
-        <div className="text-sm font-semibold uppercase">Shopping Bag ({itemAmount}) {plural}</div>
+      <div className="flex items-center justify-between py-5 border-b">
+        <div className="text-sm font-semibold uppercase">
+          Shopping Bag ({itemAmount}) {plural}
+          </div>
         {/* icon */}
         <div
           onClick={handleClose}
@@ -35,20 +36,20 @@ const Sidebar = () => {
           <IoMdArrowForward className="text-2xl" />
         </div>
       </div>
-      <div className="flex flex-col gap-y-2 h-[520px] lg:h-[640p] overflow-y-auto overflow-x-hidden border-b">
+      <div className="flex flex-col gap-y-2 h-[480px] lg:h-[640p] overflow-y-auto overflow-x-hidden border-b">
         {cart.map(item => {
-          return <CartItem item={item} key={item.id} />;
+          return <CartItem item={item} key={item._id} />;
         })}
       </div>
       <div className="flex-col py-2 mt-2 gap-y-3">
         <div className="flex items-center justify-between w-full">
           {/* total */}
           <div className="font-semibold uppercase">
-            <span className="mr-2">Total:</span>$ {parseFloat(total).toFixed(2)}{' '}
+            <span className="mr-2">Total:</span>$ {totalPrice}
           </div>
           {/* clear cart icon */}
           <div
-            onClick={clearCart}
+            // onClick={clearCart}
             className="flex items-center justify-center w-12 h-12 py-4 text-xl text-white bg-red-500 cursor-pointer"
           >
             <FiTrash2 />
