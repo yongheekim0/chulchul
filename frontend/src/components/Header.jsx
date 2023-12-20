@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 import { SidebarContext } from '../contexts/SidebarContext';
 // import Logo
 import Logo from '../img/logo-no-background.svg';
+import Dropdown from './Dropdown';
 // import icons
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsBag } from 'react-icons/bs';
@@ -11,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
+import { resetCart } from '../slices/cartSlice';
 
 const Header = () => {
   // header state
@@ -31,6 +33,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      dispatch(resetCart())
       navigate('/login');
     } catch (error) {
       console.log(error);
@@ -71,8 +74,8 @@ const Header = () => {
           </div>
           {userInfo ? (
             <div>
-              {/* <Link to="/profile">Profile</Link> */}
-              <button onClick={logoutHandler}>Logout</button>
+              <Dropdown logoutHandler={logoutHandler} name={userInfo.name}/>
+              {/* <button onClick={logoutHandler}>Logout</button> */}
             </div>
           ) : (
             <Link to="/login">

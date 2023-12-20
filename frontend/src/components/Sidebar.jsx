@@ -16,7 +16,7 @@ const Sidebar = () => {
   const { isOpen, handleClose } = useContext(SidebarContext);
   // fetch the cart state
   const { cartItems: cart, itemsPrice, totalPrice, shippingPrice, taxPrice } = useSelector((state) => state.cart)
-  console.log(cart.length)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -58,10 +58,16 @@ const Sidebar = () => {
         })}
       </div>
       <div className="flex-col py-2 mt-2 gap-y-3">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex justify-between w-full text-sm odd:items-center">
           {/* total */}
-          <div className="font-semibold uppercase">
-            <span className="mr-2">Total:</span>$ {itemsPrice}
+          <div>
+
+          <div className="text-gray-400 ">
+            <span className="mr-2 text-primary">Subtotal:</span><span>$ {itemsPrice} {itemsPrice < 100.00 && (<span className='ml-3 text-blue-600'>-${parseFloat(100.00-itemsPrice).toFixed(2)} free shipping</span>)}</span>
+          </div>
+          <div className="text-gray-400 ">
+            <span className="mr-2 text-primary">Shipping Price:</span> {shippingPrice == 0 ? <span><span className='line-through'>$10.0</span><span className='ml-2 text-red-600'>Free</span></span>   : `$${shippingPrice}`}
+          </div>
           </div>
           {/* clear cart icon */}
           <div
@@ -71,9 +77,15 @@ const Sidebar = () => {
             <FiTrash2 />
           </div>
         </div>
-        <Link to='/' className='flex items-center justify-center w-full p-4 mt-2 font-medium bg-gray-200 text-primary'>View cart</Link>
+        <div className='w-full p-4 mt-2 font-medium bg-gray-100 text-primary'>
+
+          <div className="font-semibold uppercase">
+            {itemsPrice == 0 ? (<span className='mr-1'>Total: 0.00</span>) : (<span><span className="mr-1">Total:</span>$ {totalPrice} <span className='text-sm lowercase '>(15% tax incl. $ {taxPrice})</span></span>)}
+            
+          </div>
+        </div>
        
-        <button className='flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary' disabled={cart.length === 0} onClick={checkoutHandler}>Checkout</button>
+        <button className='flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary' disabled={cart.length === 0} onClick={checkoutHandler}>Proceed to Checkout</button>
       </div>
     </div>
   );

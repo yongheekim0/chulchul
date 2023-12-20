@@ -1,27 +1,34 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Home from './pages/Home';
-import ProductDetail from './pages/ProductDetails';
-import Login from './pages/Login';
-import { ToastContainer } from 'react-toastify'
+import HomePage from './pages/HomePage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import UserLoginPage from './pages/UserLoginPage';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import UserRegisterPage from './pages/UserRegisterPage';
+import ShippingPage from './pages/ShippingPage';
+import PrivateRoute from './components/privateRoute';
 
 const App = () => {
   return (
-    <div className="overflow-hidden">
+    <div>
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/product/:id' element={<ProductDetail/>}/>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/login" element={<UserLoginPage />} />
+          <Route path="/register" element={<UserRegisterPage />} />
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="/shipping" element={<ShippingPage />} />
+          </Route>
         </Routes>
-        <Sidebar/>
+        <Sidebar />
         <Footer />
-        <ToastContainer autoClose={2000}/>
+        <ToastContainer autoClose={2000} />
       </Router>
     </div>
   );

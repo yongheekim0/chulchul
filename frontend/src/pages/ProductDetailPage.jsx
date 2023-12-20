@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 // import cart context
 import { useDispatch } from 'react-redux';
 //import slices
@@ -7,8 +7,9 @@ import { addToCart } from '../slices/cartSlice';
 //import components
 import Rating from '../components/Rating';
 import Loader from '../components/Loader';
+import { FaArrowLeft } from "react-icons/fa";
 
-const ProductDetails = () => {
+const ProductDetail = () => {
   //get the product id from the url
   const { id: productId } = useParams();
   const dispatch = useDispatch();
@@ -41,6 +42,8 @@ const ProductDetails = () => {
   } = product;
 
   return (
+    <>
+   
     <section className="flex items-center justify-center h-screen pt-32 pb-12 lg:py-32">
       {isLoading ? (
         <Loader />
@@ -48,6 +51,7 @@ const ProductDetails = () => {
         <div>{error?.data?.message || error.error}</div>
       ) : (
         <div className="container mx-auto">
+           <div className='inline-block ml-[60px] text-xl hover:scale-125 '><Link to='/'><FaArrowLeft /></Link></div>
           {/* image & text wrapper */}
           <div className="flex flex-col items-center lg:flex-row">
             {/* image */}
@@ -89,7 +93,8 @@ const ProductDetails = () => {
         </div>
       )}
     </section>
+    </>
   );
 };
 
-export default ProductDetails;
+export default ProductDetail;

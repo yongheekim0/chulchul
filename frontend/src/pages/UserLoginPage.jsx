@@ -7,7 +7,7 @@ import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
 
-const Login = () => {
+const UserLoginPage = () => {
   const [loginInput, setLoginInput] = useState({ email: '', password: '' });
   const { email, password } = loginInput;
 
@@ -96,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default UserLoginPage;
