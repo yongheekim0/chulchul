@@ -25,17 +25,19 @@ const Sidebar = () => {
   const plural = itemAmount >=2 ? 'items': 'item'
 
   const emptyCartHandler = async () => {
+   
     dispatch(emptyCart())
   }
 
   const checkoutHandler = () => {
+    handleClose()
     navigate('/login?redirect=/shipping')
   }
   return (
     <div
       className={`${
         isOpen ? 'right-0' : '-right-full'
-      } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px] overflow-auto`}
+      } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-[400ms] z-20 px-4 lg:px-[35px] overflow-auto`}
     >
       {' '}
       <div className="flex items-center justify-between py-5 border-b">
@@ -45,7 +47,7 @@ const Sidebar = () => {
         {/* icon */}
         <div
           onClick={handleClose}
-          className="flex items-center justify-center w-8 h-8 cursor-pointer"
+          className="flex items-center justify-center w-8 h-8 transition cursor-pointer hover:translate-x-2"
         >
           <IoMdArrowForward className="text-2xl" />
         </div>

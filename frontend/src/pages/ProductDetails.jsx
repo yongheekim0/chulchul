@@ -41,7 +41,7 @@ const ProductDetails = () => {
   } = product;
 
   return (
-    <section className="flex items-center h-screen pt-32 pb-12 lg:py-32">
+    <section className="flex items-center justify-center h-screen pt-32 pb-12 lg:py-32">
       {isLoading ? (
         <Loader />
       ) : error ? (

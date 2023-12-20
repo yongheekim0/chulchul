@@ -7,16 +7,36 @@ import Logo from '../img/logo-no-background.svg';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsBag } from 'react-icons/bs';
 // import Link
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { logout } from '../slices/authSlice';
 
 const Header = () => {
   // header state
   const [isActive, setIsActive] = useState(false);
   const { isOpen, setIsOpen } = useContext(SidebarContext);
+  // bring states
   const { cartItems } = useSelector(state => state.cart);
+  const { userInfo } = useSelector(state => state.auth);
   // event listener
   const itemAmount = cartItems.reduce((a, c) => a + c.qty, 0);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
@@ -31,18 +51,13 @@ const Header = () => {
       <div className="container flex items-center justify-between h-full mx-auto">
         {/* Logo */}
         <Link to={'/'}>
-          <div>
+          <div className="transition hover:scale-110">
             <img className="w-[90px]" src={Logo} alt="Main logo" />
           </div>
         </Link>
         {/* cart */}
 
         <div className="flex items-center justify-center gap-4">
-          <Link to="/user">
-            <div>
-              <AiOutlineUser className="text-2xl transition hover:scale-110" />
-            </div>
-          </Link>
           <div
             onClick={() => setIsOpen(!isOpen)}
             className="relative flex cursor-pointer"
@@ -54,6 +69,18 @@ const Header = () => {
               </div>
             )}
           </div>
+          {userInfo ? (
+            <div>
+              {/* <Link to="/profile">Profile</Link> */}
+              <button onClick={logoutHandler}>Logout</button>
+            </div>
+          ) : (
+            <Link to="/login">
+              <div>
+                <AiOutlineUser className="text-2xl transition hover:scale-110" />
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </header>
