@@ -15,7 +15,6 @@ import { Provider } from 'react-redux';
 import store from './store/store.jsx';
 import UserRegisterPage from './pages/UserRegisterPage';
 import ShippingPage from './pages/ShippingPage';
-import PrivateRoute from './components/privateRoute';
 import PaymentPage from './pages/PaymentPage';
 import UserProfilePage from './pages/UserProfilePage';
 import HomePage from './pages/HomePage';
@@ -30,11 +29,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<UserLoginPage />} />
       <Route path="/register" element={<UserRegisterPage />} />
       {/* Registered users */}
-      {/* <Route path="" element={<PrivateRoute />}> */}
         <Route path="/shipping" element={<ShippingPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
-      {/* </Route> */}
     </Route>
   )
 );
