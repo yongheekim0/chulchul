@@ -22,30 +22,29 @@ import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import UserLoginPage from './pages/UserLoginPage';
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<App />}>
-      <Route index={true} path='/' element={<HomePage />} />
-      <Route path='/product/:id' element={<ProductDetailPage />} />
-      <Route path='/login' element={<UserLoginPage />} />
-      <Route path='/register' element={<UserRegisterPage />} />
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<HomePage />} />
+      <Route path="/product/:id" element={<ProductDetailPage />} />
+      <Route path="/login" element={<UserLoginPage />} />
+      <Route path="/register" element={<UserRegisterPage />} />
       {/* Registered users */}
-      <Route path='' element={<PrivateRoute />}>
-        <Route path='/shipping' element={<ShippingPage />} />
-        <Route path='/payment' element={<PaymentPage />} />
-        <Route path='/profile' element={<UserProfilePage />} />
-      </Route>
+      {/* <Route path="" element={<PrivateRoute />}> */}
+        <Route path="/shipping" element={<ShippingPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/profile" element={<UserProfilePage />} />
+      {/* </Route> */}
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <SidebarProvider>
-      <React.StrictMode>
-      <RouterProvider router={router} />
-      </React.StrictMode>
-    </SidebarProvider>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <SidebarProvider>
+        <RouterProvider router={router} />
+      </SidebarProvider>
+    </Provider>
+  </React.StrictMode>
 );
