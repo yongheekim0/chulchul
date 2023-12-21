@@ -49,11 +49,11 @@ const ShippingPage = () => {
   };
   return (
     <section className="pt-32 pb-12 lg:py-32">
-      <div className="container flex flex-col justify-around h-full max-w-lg gap-4 mx-auto md:flex-row md:max-w-5xl">
+      <div className="container flex flex-col-reverse justify-around h-full max-w-lg gap-4 mx-auto md:flex-row md:max-w-5xl">
         <div className="flex-1">
           <form onSubmit={submitHandler}>
             <AddressForm changeHandler={changeHandler} {...addressInput} />
-            <button type="submit">Continue</button>
+            <button type="submit" className="flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary">Continue</button>
           </form>
         </div>
         <div className="flex-1">
@@ -104,12 +104,12 @@ const ShippingPage = () => {
               </div>
             </div>
 
-            <button
+            {/* <button
               className="flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary"
               disabled={cartItems.length === 0}
             >
               Checkout
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

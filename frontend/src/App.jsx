@@ -11,6 +11,9 @@ import Footer from './components/Footer';
 import UserRegisterPage from './pages/UserRegisterPage';
 import ShippingPage from './pages/ShippingPage';
 import PrivateRoute from './components/privateRoute';
+import PaymentPage from './pages/PaymentPage';
+import UserProfilePage from './pages/UserProfilePage';
+import Product from './components/Product';
 
 const App = () => {
   return (
@@ -19,11 +22,14 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route exact path="/#product" element={<Product/>}/>
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/login" element={<UserLoginPage />} />
           <Route path="/register" element={<UserRegisterPage />} />
           <Route path="" element={<PrivateRoute />}>
             <Route path="/shipping" element={<ShippingPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/profile" element={<UserProfilePage />} />
           </Route>
         </Routes>
         <Sidebar />

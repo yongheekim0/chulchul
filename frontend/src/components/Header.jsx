@@ -48,14 +48,14 @@ const Header = () => {
   return (
     <header
       className={`${
-        isActive ? 'bg-white py-6 shadow-md' : 'bg-none py-6'
+        isActive ? 'bg-white shadow-md py-3' : 'bg-none pt-3'
       } fixed w-full z-10 transition-all`}
     >
       <div className="container flex items-center justify-between h-full mx-auto">
         {/* Logo */}
         <Link to={'/'}>
           <div className="transition hover:scale-110">
-            <img className="w-[90px]" src={Logo} alt="Main logo" />
+            <img className="w-[65px]" src={Logo} alt="Main logo" />
           </div>
         </Link>
         {/* cart */}
@@ -67,7 +67,7 @@ const Header = () => {
           >
             <BsBag className="text-2xl transition hover:scale-110" />
             {itemAmount > 0 && (
-              <div className=" bg-red-500 absolute -right-2 -bottom-2 text-[14px] w-[18px] h-[18px] rounded-full flex justify-center items-center">
+              <div className=" bg-red-500/50 absolute right-[2px] -bottom-[0.02px] text-[14px] w-[19px] h-[16.5px] font-medium flex justify-center items-center">
                 {itemAmount}
               </div>
             )}

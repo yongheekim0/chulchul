@@ -94,7 +94,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-
+ 
   if(user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
@@ -102,7 +102,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     if (req.body.password) {
       user.passwoard = req.body.password
     }
-
+    
     const updatedUser = await user.save();
 
     res.status(200).json({

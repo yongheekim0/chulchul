@@ -47,7 +47,7 @@ export default function Dropdown({logoutHandler, name}) {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <button
+                <Link
                   onClick={logoutHandler}
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -55,7 +55,7 @@ export default function Dropdown({logoutHandler, name}) {
                   )}
                 >
                   Logout
-                </button>
+                </Link>
               )}
             </Menu.Item>
           </div>

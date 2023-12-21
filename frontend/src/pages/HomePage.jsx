@@ -1,10 +1,19 @@
 import Product from '../components/Product';
+import {useRef, useEffect, useCallback} from 'react'
 import Hero from '../components/Hero';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
 
 const Home = () => {
   const { data: products, isLoading, error } = useGetProductsQuery();
+
+  const handleScroll = useCallback(() => {
+    window.scrollTo({
+      top: 550,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [])
 
   const loadProducts = isLoading ? (
     <Loader />
@@ -20,9 +29,9 @@ const Home = () => {
 
   return (
     <div>
-      <Hero />
+      <Hero handleScroll={handleScroll}/>
       <section className="py-16">
-        <div className="container mx-auto">{loadProducts}</div>
+        <div id='products' className="container mx-auto">{loadProducts}</div>
       </section>
     </div>
   );

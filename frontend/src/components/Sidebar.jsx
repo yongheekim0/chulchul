@@ -63,10 +63,10 @@ const Sidebar = () => {
           <div>
 
           <div className="text-gray-400 ">
-            <span className="mr-2 text-primary">Subtotal:</span><span>$ {itemsPrice} {itemsPrice < 100.00 && (<span className='ml-3 text-blue-600'>-${parseFloat(100.00-itemsPrice).toFixed(2)} free shipping</span>)}</span>
+            <span className="mr-2 text-primary">Subtotal:</span><span>$ {itemsPrice || 0.00} {itemsPrice < 100.00 && (<span className='ml-3 text-blue-600'>-${parseFloat(100.00-itemsPrice).toFixed(2)} free shipping</span>)}</span>
           </div>
           <div className="text-gray-400 ">
-            <span className="mr-2 text-primary">Shipping Price:</span> {shippingPrice == 0 ? <span><span className='line-through'>$10.0</span><span className='ml-2 text-red-600'>Free</span></span>   : `$${shippingPrice}`}
+            <span className="mr-2 text-primary">Shipping Price:</span> {shippingPrice == 0 ? <span><span className='line-through'>$10.0</span><span className='ml-2 text-red-600'>Free</span></span> : `$${shippingPrice}`}
           </div>
           </div>
           {/* clear cart icon */}
@@ -80,12 +80,12 @@ const Sidebar = () => {
         <div className='w-full p-4 mt-2 font-medium bg-gray-100 text-primary'>
 
           <div className="font-semibold uppercase">
-            {itemsPrice == 0 ? (<span className='mr-1'>Total: 0.00</span>) : (<span><span className="mr-1">Total:</span>$ {totalPrice} <span className='text-sm lowercase '>(15% tax incl. $ {taxPrice})</span></span>)}
+            {itemsPrice == 0 ? (<span className='mr-1'>Total: 0.00</span>) : (<span><span className="mr-1">Total:</span>$ {totalPrice || 0.00} <span className='text-sm lowercase '>(15% tax incl. $ {taxPrice || 0.00})</span></span>)}
             
           </div>
         </div>
        
-        <button className='flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary' disabled={cart.length === 0} onClick={checkoutHandler}>Proceed to Checkout</button>
+        <button className={`${cart.length === 0 && 'text-gray-500 bg-primary/50'} flex items-center justify-center w-full p-4 mt-2 font-medium text-white bg-primary`} disabled={cart.length === 0} onClick={checkoutHandler}>Proceed to Checkout</button>
       </div>
     </div>
   );
