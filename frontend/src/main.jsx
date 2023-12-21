@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import {
+  createHashRouter,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Navigate,
 } from 'react-router-dom';
 // sidebar provider
 import SidebarProvider from './contexts/SidebarContext.jsx';
@@ -22,7 +24,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import UserLoginPage from './pages/UserLoginPage';
 import PrivateRoute from './components/PrivateRoute.jsx';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomePage />} />
@@ -35,6 +37,7 @@ const router = createBrowserRouter(
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
       </Route>
+      <Route path="/*" element={<Navigate to="/" />} />
     </Route>
   )
 );
