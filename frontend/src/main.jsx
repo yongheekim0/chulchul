@@ -20,6 +20,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import UserLoginPage from './pages/UserLoginPage';
+import PrivateRoute from './components/PrivateRoute.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,9 +30,11 @@ const router = createBrowserRouter(
       <Route path="/login" element={<UserLoginPage />} />
       <Route path="/register" element={<UserRegisterPage />} />
       {/* Registered users */}
+      <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+      </Route>
     </Route>
   )
 );
