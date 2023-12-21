@@ -1,9 +1,9 @@
 # E-Commerce web app: [ChulChul&copy;](https://chulchul.onrender.com/#/)
 
 ## Description
-
 **ChulChul&copy;** is a fully functional E-commerce web application. With a responsive user interface, it allows users to browse through products, add them to their cart, and complete transactions using PayPal.
 
+![alt text](frontend/public/screenshot.png 'pageviews')
 ### Features
 
 - **User Authentication:** Secure user authentication system for account creation, login, and update user profile.
