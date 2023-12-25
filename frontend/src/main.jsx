@@ -4,11 +4,9 @@ import App from './App.jsx';
 import './index.css';
 import {
   createHashRouter,
-  createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
-  Navigate,
 } from 'react-router-dom';
 // sidebar provider
 import SidebarProvider from './contexts/SidebarContext.jsx';
@@ -23,6 +21,9 @@ import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import UserLoginPage from './pages/UserLoginPage';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import PlaceOrderPage from './pages/PlaceOrderPage.jsx';
+import OrderPage from './pages/OrderPage.jsx';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -36,8 +37,10 @@ const router = createHashRouter(
         <Route path="/shipping" element={<ShippingPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/profile" element={<UserProfilePage />} />
+        <Route path="/placeorder" element={<PlaceOrderPage />} />
+        <Route path="order/:id" element={<OrderPage />} />
       </Route>
-      <Route path="/*" element={<Navigate to="/" />} />
+      {/* <Route path="/*" element={<Navigate to="/" />} /> */}
     </Route>
   )
 );
@@ -45,9 +48,11 @@ const router = createHashRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <SidebarProvider>
-        <RouterProvider router={router} />
-      </SidebarProvider>
+      <PayPalScriptProvider deferLoading={true}>
+        <SidebarProvider>
+          <RouterProvider router={router} />
+        </SidebarProvider>
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );

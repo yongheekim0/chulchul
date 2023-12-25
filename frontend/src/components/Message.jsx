@@ -1,6 +1,8 @@
-const Message = ({variant, children}) => {
+const Message = ({children}) => {
   return (
-    <div></div>
+    <div className="p-4 text-orange-700 bg-orange-100 border-l-4 border-orange-500" role="alert">
+    <p>{children}</p>
+  </div>
   )
 }
 

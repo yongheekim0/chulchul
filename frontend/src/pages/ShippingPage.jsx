@@ -9,6 +9,7 @@ import ShippingItem from '../components/ShippingItem';
 import AddressForm from '../components/AddressForm';
 // import sidebar context
 import { emptyCart, saveShippingAddress } from '../slices/cartSlice';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 const ShippingPage = () => {
   const {
@@ -24,7 +25,7 @@ const ShippingPage = () => {
     address: shippingAddress?.address || '',
     city: shippingAddress?.city || '',
     postalCode: shippingAddress?.postalCode || '',
-    country: shippingAddress?.county || '',
+    country: shippingAddress?.country || 'South Korea',
   });
   const { address, city, postalCode, country } = addressInput;
   const changeHandler = e => {
@@ -47,8 +48,10 @@ const ShippingPage = () => {
   const emptyCartHandler = async () => {
     dispatch(emptyCart());
   };
+
   return (
     <section className="pt-32 pb-12 lg:py-32">
+      <CheckoutSteps step1 step2 />
       <div className="container flex flex-col-reverse justify-around h-full max-w-lg gap-4 mx-auto md:flex-row md:max-w-5xl">
         <div className="flex-1">
           <form onSubmit={submitHandler}>
