@@ -1,7 +1,7 @@
 // import link
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import icons
 import { FiTrash2 } from 'react-icons/fi';
 // import componenets
@@ -48,6 +48,11 @@ const ShippingPage = () => {
   const emptyCartHandler = async () => {
     dispatch(emptyCart());
   };
+  useEffect(()=> {
+    if(cartItems.length===0) {
+      navigate('/')
+    }
+  },[navigate, cartItems.length])
 
   return (
     <section className="pt-32 pb-12 lg:py-32">

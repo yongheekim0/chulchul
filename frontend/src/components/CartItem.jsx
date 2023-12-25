@@ -11,12 +11,15 @@ const CartItem = ({ item }) => {
   const addToCartHandler = async () => {
     dispatch(addToCart({ ...item }))
   }
+
   const decreaseAmountHandler = async () => {
     dispatch(decreaseQty({...item}))
   }
+  
   const removeFromCartHandler = async (id) => {
     dispatch(removeFromCart(id))
   }
+
   return (
     <div className="flex w-full py-2 font-light text-gray-500 border-b border-gray-200 gap-x-4 lg:px-6">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">

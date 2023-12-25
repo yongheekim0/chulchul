@@ -1,5 +1,3 @@
-
-
 const Hero = ({ handleScroll }) => {
   return (
     <section className=" bg-gradient-to-r from-terracotta-200 h-[600px] pt-20">
