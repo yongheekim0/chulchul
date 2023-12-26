@@ -39,6 +39,7 @@ const PlaceOrderPage = () => {
       toast.error(error);
     }
   };
+
   return (
     <section className="pt-32 pb-12 lg:py-32">
       <CheckoutSteps step1 step2 step3 step4 />
@@ -65,7 +66,6 @@ const PlaceOrderPage = () => {
             )}
           </div>
           <div className="flex items-center py-4 justify-evenly">
-            <div className='flex-1'>paymonet method: {cart.paymentMethod}</div>
             <div className='flex-1'>
               <p className="flex justify-between mb-1 border-b-2 bg-gray-200/50">
                 <span>Subtotal:</span> <span>$ {cart.itemsPrice}</span>

@@ -117,7 +117,7 @@ const UserProfilePage = () => {
           </form>
         </div>
         <div className="flex-auto md:w-2/3">
-          <h2 className="mb-4 text-2xl font-bold uppercase">Order History</h2>
+          <h2 className="mb-4 text-2xl font-bold uppercase ">Order History</h2>
           {isLoading ? (
             <Loader />
           ) : isError ? (

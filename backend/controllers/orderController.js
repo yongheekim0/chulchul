@@ -91,7 +91,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @route   PUT /api/orders/:id/deliver
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  res.send('update order to delivered');
+   const orders = await Order.find({}).populate('user', 'id name');
+   res.status(200).json(orders);
 });
 
 // @desc    Get all orders

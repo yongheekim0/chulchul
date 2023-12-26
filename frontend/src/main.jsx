@@ -24,6 +24,9 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import PlaceOrderPage from './pages/PlaceOrderPage.jsx';
 import OrderPage from './pages/OrderPage.jsx';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import AdminRoute from './components/AdminRoute.jsx'
+import OrderListPage from './pages/admin/OrderListPage.jsx'; 
+
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -39,6 +42,9 @@ const router = createHashRouter(
         <Route path="/profile" element={<UserProfilePage />} />
         <Route path="/placeorder" element={<PlaceOrderPage />} />
         <Route path="order/:id" element={<OrderPage />} />
+      </Route>
+      <Route path="" element={<AdminRoute/>}>
+        <Route path="/admin/orderlist" element={<OrderListPage/>} />
       </Route>
       {/* <Route path="/*" element={<Navigate to="/" />} /> */}
     </Route>

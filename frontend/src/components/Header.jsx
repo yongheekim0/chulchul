@@ -74,7 +74,7 @@ const Header = () => {
           </div>
           {userInfo ? (
             <div>
-              <Dropdown logoutHandler={logoutHandler} name={userInfo.name} />
+              <Dropdown logoutHandler={logoutHandler} name={userInfo.name} isAdmin={userInfo.isAdmin}/>
               {/* <button onClick={logoutHandler}>Logout</button> */}
             </div>
           ) : (

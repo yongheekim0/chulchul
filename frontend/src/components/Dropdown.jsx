@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Dropdown({logoutHandler, name}) {
+export default function Dropdown({logoutHandler, name, isAdmin}) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -32,6 +32,7 @@ export default function Dropdown({logoutHandler, name}) {
       >
         <Menu.Items className="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
+          {!isAdmin? (
             <Menu.Item>
               {({ active }) => (
                 <Link
@@ -45,6 +46,50 @@ export default function Dropdown({logoutHandler, name}) {
                 </Link>
               )}
             </Menu.Item>
+          ) : (
+            <>
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    to="/admin/orderlist"
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'block px-4 py-2 text-sm'
+                    )}
+                  >
+                    Orders
+                  </Link>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/admin/orderlist"
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm'
+                  )}
+                >
+                  Products
+                </Link>
+              )}
+                        </Menu.Item><Menu.Item>
+                {({ active }) => (
+                  <Link
+                    to="/admin/orderlist"
+                    className={classNames(
+                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                      'block px-4 py-2 text-sm'
+                    )}
+                  >
+                    Orders
+                  </Link>
+                )}
+              </Menu.Item>
+            </>
+          )}
+            
+            
             <Menu.Item>
               {({ active }) => (
                 <Link
